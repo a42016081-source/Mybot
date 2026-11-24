@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: atx-file-host
+    runtime: python
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: python main.py
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false          # Render dashboard me daalna
+      - key: OWNER_ID
+        sync: false
+      - key: PING_INTERVAL
+        value: "5"
+      - key: PYTHON_VERSION
+        value: "3.11.9"
